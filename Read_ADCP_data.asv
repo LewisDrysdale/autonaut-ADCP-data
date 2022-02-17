@@ -63,8 +63,8 @@ for ii=1:length(fdrs)
            rt.binD=[rt.binD Wat.binDepth];
            rt.time=[rt.time; dtnum];
            rt.corr=cat(2,rt.corr,Wat.correlation);
-           rt.av_e=cat(1,rt.av_e,Sup.avg_vEast);
-           rt.av_n=cat(1,rt.av_n,Sup.avg_vNorth);
+           rt.bs=cat(2,rt.bs,Wat.backscatter);
+           rt.bs=cat(2,rt.bs,Wat.backscatter);
        end
       rtcnt=rtcnt+1;
    elseif nanmean(y)<55 & nanmean(x)<-9 & nanmean(y)>53% celtic sea
@@ -77,8 +77,6 @@ for ii=1:length(fdrs)
            cs.time=dtnum;
            cs.corr=Wat.correlation;
            cs.bs=Wat.backscatter;
-           cs.av_e=Sup.avg_vEast;
-           cs.av_n=Sup.avg_vNorth;
        else
            cs.v_N=[cs.v_N Wat.vNorth];
            cs.v_E=[cs.v_E Wat.vEast];
@@ -87,10 +85,7 @@ for ii=1:length(fdrs)
            cs.binD=[cs.binD Wat.binDepth];
            cs.time=[cs.time; dtnum];
            cs.corr=cat(2,cs.corr,Wat.correlation);
-           cs.bs=cat(2,cs.bs,Wat.backscatter);       
-           cs.av_e=cat(1,cs.av_e,Sup.avg_vEast);
-           cs.av_n=cat(1,cs.av_n,Sup.avg_vNorth);
-       end
+           cs.bs=cat(2,cs.bs,Wat.backscatter);       end
       cscnt=cscnt+1;
    end
 
