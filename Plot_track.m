@@ -2,7 +2,7 @@ clearvars;
 close('all');
 
 
-ddir='C:\Users\sa01ld\OneDrive - SAMS\Projects\Autonaut-EE\Non-Acoustic data\batch-process';
+ddir='C:\Users\sa01ld\OneDrive - SAMS\Projects\Autonaut-EE\Non-Acoustic data\batch-process-GNSS';
 
 fdrs=dir([ddir '\*Data']);
 
@@ -15,7 +15,7 @@ cnt=0;
 
 for ii=1:length(fdrs)   
    dtfle=fullfile(ddir,fdrs(ii).name);
-   fles=dir(dtfle);
+   fles=dir([dtfle '\*.mat']);
    fles=fles(~ismember({fles.name},{'.','..'}));
    fle=fullfile(dtfle,fles.name);
    importfile(fullfile(fle))
@@ -52,6 +52,9 @@ m_scatter(Lon,Lat,20,time,'filled');
 colorbar
 cbdate
 
-title('Autonaut EE track');
+m_55 & nanmean(x)<-9 % rockall data
+
+
+title('Autonaut EE ADCP data');
 
 print(gcf,'-dpng','figures/track');
