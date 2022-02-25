@@ -14,13 +14,16 @@ for jj=1:numel(fles)
     x=datetime(SCAT_data.DateString,'InputFormat','yyyy/MM/dd HH:mm:ss.S');
     y=SCAT_data.Salinity;
     [Y,dx,ndx] = ddspike(y,[-5 5],4,5,'n');
-    plot(x,y,'k.');
+    h1=plot(x,y,'k.');
     hold on
-    plot(x,Y,'r.');
+    h2=plot(x,Y,'r.');
 
 end
-
+legend([h1 h2],'raw data','first pass despike','Location','southeast')
+title('Salinity')
+ylabel('PSU')
 ylim([35.1 35.2])
+print(gcf,'-dpng',['figures/sal_example']);
 
 %% speed of sound
 figure
@@ -40,3 +43,7 @@ plot(x,y,'b-');
 hold on
 plot([x(1) x(end)],[nanmean(y) nanmean(y)],'r-');
 ylim([floor(min(y)) ceil(max(y))])
+title('Speed of sound')
+ylabel('m/s')
+
+print(gcf,'-dpng',['figures/SOS_example']);
