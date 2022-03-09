@@ -19,6 +19,8 @@ rt.av_n=[];
 rt.av_e=[];
 rt.gpsVeast=[];
 rt.gpsVnorth=[];
+rt.gpsHead=[];
+rt.sensHead=[];
 rtcnt=0;
 
 cs.Lat=[];
@@ -33,6 +35,8 @@ cs.av_n=[];
 cs.av_e=[];
 cs.gpsVeast=[];
 cs.gpsVnorth=[];
+cs.gpsHead=[];
+cs.sensHead=[];
 cscnt=0;
 
 ll.Lat=[];
@@ -47,6 +51,8 @@ ll.av_n=[];
 ll.av_e=[];
 ll.gpsVeast=[];
 ll.gpsVnorth=[];
+ll.gpsHead=[];
+ll.sensHead=[];
 llcnt=0;
 
 for ii=1:length(fdrs)   
@@ -75,6 +81,8 @@ for ii=1:length(fdrs)
            rt.av_n=Sup.avg_vNorth;
            rt.gpsVnorth=Nav.gpsVnorth;
            rt.gpsVeast=Nav.gpsVeast;
+           rt.gpsHead=Nav.gpsHeading;
+           rt.sensHead=Sensor.heading_deg;
        else
            rt.v_N=[rt.v_N Wat.vNorth];
            rt.v_E=[rt.v_E Wat.vEast];
@@ -87,6 +95,8 @@ for ii=1:length(fdrs)
            rt.corr=cat(2,rt.corr,Wat.correlation);
            rt.av_e=cat(1,rt.av_e,Sup.avg_vEast);
            rt.av_n=cat(1,rt.av_n,Sup.avg_vNorth);
+           rt.gpsHead=cat(1,rt.gpsHead,Nav.gpsHeading);
+           rt.sensHead=cat(1,rt.sensHead,Sensor.heading_deg);
        end
       rtcnt=rtcnt+1;
    elseif nanmean(y)<55 & nanmean(x)<-9 & nanmean(y)>53% celtic sea
@@ -103,6 +113,8 @@ for ii=1:length(fdrs)
            cs.av_n=Sup.avg_vNorth;
            cs.gpsVnorth=Nav.gpsVnorth;
            cs.gpsVeast=Nav.gpsVeast;
+           cs.gpsHead=Nav.gpsHeading;
+           cs.sensHead=Sensor.heading_deg;
        else
            cs.v_N=[cs.v_N Wat.vNorth];
            cs.v_E=[cs.v_E Wat.vEast];
@@ -116,6 +128,8 @@ for ii=1:length(fdrs)
            cs.bs=cat(2,cs.bs,Wat.backscatter);       
            cs.av_e=cat(1,cs.av_e,Sup.avg_vEast);
            cs.av_n=cat(1,cs.av_n,Sup.avg_vNorth);
+           cs.gpsHead=cat(1,cs.gpsHead,Nav.gpsHeading);
+           cs.sensHead=cat(1,cs.sensHead,Sensor.heading_deg);
        end
       cscnt=cscnt+1;   
    elseif nanmean(x)>-7 & nanmean(x)<-5.4 % Loch Linnhe
@@ -132,6 +146,8 @@ for ii=1:length(fdrs)
            ll.av_n=Sup.avg_vNorth;
            ll.gpsVnorth=Nav.gpsVnorth;
            ll.gpsVeast=Nav.gpsVeast;
+           ll.gpsHead=Nav.gpsHeading;
+           ll.sensHead=Sensor.heading_deg;
        else
            ll.v_N=[ll.v_N Wat.vNorth];
            ll.v_E=[ll.v_E Wat.vEast];
@@ -145,6 +161,8 @@ for ii=1:length(fdrs)
            ll.bs=cat(2,ll.bs,Wat.backscatter);       
            ll.av_e=cat(1,ll.av_e,Sup.avg_vEast);
            ll.av_n=cat(1,ll.av_n,Sup.avg_vNorth);
+           ll.gpsHead=cat(1,ll.gpsHead,Nav.gpsHeading);
+           ll.sensHead=cat(1,ll.sensHead,Sensor.heading_deg);
        end
       llcnt=llcnt+1;
    end
