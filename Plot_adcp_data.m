@@ -1,7 +1,7 @@
 close('all'); clearvars;
 
-cs=1;
-rt=0;
+cs=0;
+rt=1;
 ll=0;
 
 if cs==1
@@ -94,7 +94,7 @@ ylabel('Depth')
 ylabel(c,'')
 grid on
 title([name ' Velocity North' ]);
-print(gcf,'-dpng',['figures/' name '_Velocities']);
+print(gcf,'-dpng',['figures/' name '_Velocities2']);
 
 
 %% plot backscatter and correlation
@@ -114,7 +114,7 @@ for dd=1:4
    ylabel(c,'% good')
    grid on
    title(['Beam ' num2str(dd) ]);
-   print(gcf,'-dpng',['figures/' name '_correlation Beam ' num2str(dd)]);
+   print(gcf,'-dpng',['figures/' name '_correlation Beam2 ' num2str(dd)]);
 end
 
 %% plot backscatter and correlation
@@ -137,7 +137,7 @@ for dd=1:4
    title(['Beam ' num2str(dd) ]);
 end
 sgtitle([name ' backscatter ']) ;
-print(gcf,'-dpng',['figures/' name 'backscatter']);
+print(gcf,'-dpng',['figures/' name 'backscatter2']);
 %% quiver plot
 figure('Renderer', 'painters', 'Position', [10 20 500 500])
 X=Lon;
@@ -183,7 +183,7 @@ xlabel('Longitude')
 legend([q1 q2],'Sample','10 minute average');
 title([name ' GPS velocity']) 
 
-print(gcf,'-dpng',['figures/' name '_GPS_velocity']);
+print(gcf,'-dpng',['figures/' name '_GPS_velocity2']);
 
 %% quiver plot
 figure('Renderer', 'painters', 'Position', [10 20 500 500])
@@ -234,4 +234,4 @@ xlabel('Longitude')
 legend([q1 q2],'GPS Velocity 10 min average','ADCP velocity 10 min average');
 title([name]) 
 
-print(gcf,'-dpng',['figures/' name '_vector_plot']);
+print(gcf,'-dpng',['figures/' name '_vector_plot2']);

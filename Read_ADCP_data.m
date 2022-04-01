@@ -2,8 +2,8 @@ clearvars;
 close('all');
 
 
-ddir='C:\Users\sa01ld\OneDrive - SAMS\Projects\Autonaut-EE\Non-Acoustic data\batch-process-GNSS';
-
+% ddir='C:\Users\sa01ld\OneDrive - SAMS\Projects\Autonaut-EE\Non-Acoustic data\batch-process-GNSS';
+ddir='E:\Non-Acoustic data\batch-process-GNSS -plusCorrection';
 fdrs=dir([ddir '\*Data']);
 
 rt.Lat=[];
