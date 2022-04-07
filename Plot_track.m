@@ -58,12 +58,11 @@ m_grid('linewidth',1.5,'linest','none','tickdir','out','fontsize',16,...
 set(findobj('tag','m_grid_color'),'facecolor','none')
 [x,y]=m_ll2xy(Lon,Lat);
 p=plot(x,y);
-p.MarkerFaceColor='w';
-p.MarkerEdgeColor='r';
+p.MarkerFaceColor='r';
+p.MarkerEdgeColor='k';
 p.Marker='^';
-p.MarkerSize=10;
+p.MarkerSize=5;
 p.LineStyle='none';
 
-title('Autonaut EE ADCP data');
 
 print(gcf,'-dpng','figures/track');

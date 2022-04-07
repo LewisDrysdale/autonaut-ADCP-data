@@ -67,6 +67,30 @@ end
 % legend(h,legstr);
 % print(gcf,'-dpng',['figures/' name '_north_vs_east_1minAverage']);
 
+%%
+% make quiver plot
+X=Lon'; Y=Lat';
+id = X>-9.433 & X<-9.4295;
+X=repmat(X(id),17,1);
+Y=repmat(Y(id),17,1);
+U=v_E(:,id);
+V=v_N(:,id);
+cmap=cmocean('Thermal',17)
+figure;
+for ii=1:17
+    h(ii)=quiver(X(ii,:),Y(ii,:),U(ii,:),V(ii,:),'Color',cmap(ii,:));
+    hold on
+    legstr{ii}=['Bin ' num2str(ii)];
+end
+axis equal
+grid on
+legend(legstr,'Location','bestoutside')
+xlabel('Longitude')
+ylabel('Latitude')
+
+
+
+
 %% plotvelocity
 x=time';
 y=binD(:,1);
