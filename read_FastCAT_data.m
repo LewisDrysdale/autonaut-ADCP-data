@@ -43,43 +43,6 @@ IN = inpolygon(salt,temp,polyx,polyy);
 salt(~IN==0) = nan;
 temp(~IN==0) = nan;
 
-% replot figure
-clf;
-plot(salt,temp,'.')
-%%
-figure;
-t = tiledlayout(3,1);
-nexttile;
-x=time;
-y = salt;
-[Y,dx,ndx] = ddspike(y,[-0.5 0.5],4,5,'n');
-ix=Y==-9999;
-Y(Y==-9999)=NaN;
-h1=plot(x,Y,'b.','Color',[0.6 0.6 0.6]);
-mmy=movmean(Y,30);
-hold on
-h2=plot(x,mmy,'k-');
-title('')
-ylabel('')
-grid on
-
-nexttile;
-x=time;
-y = temp;
-ix=Y==-9999;
-y(Y==-9999)=NaN;
-h1=plot(x,y,'b.','Color',[0.6 0.6 0.6]);
-mmy=movmean(y,30);
-hold on
-h2=plot(x,mmy,'k-');
-title('');
-ylabel('Temperature (^o C)');
-grid on
-
-
-
-print(gcf,'-dpng',['figures/sal_example']);
-
 %% speed of sound
 figure
 for jj=1:numel(fles)
@@ -94,11 +57,8 @@ for jj=1:numel(fles)
     end
 
 end
-plot(x,y,'b-');
-hold on
-plot([x(1) x(end)],[nanmean(y) nanmean(y)],'r-');
-ylim([floor(min(y)) ceil(max(y))])
-title('Speed of sound')
-ylabel('m/s')
 
-print(gcf,'-dpng',['figures/SOS_example']);
+T = table(time,salt,temp, y, 'VariableNames', {'time','salt','temp','sound velocity'}) 
+save('SCAT_data_qc.mat','SCAT_data');
+
+
