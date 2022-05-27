@@ -2,6 +2,8 @@
 *.mat
 # all data
 /data
+/archive
+/python
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
