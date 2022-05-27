@@ -4,14 +4,16 @@ ddir='C:\Users\sa01ld\OneDrive - SAMS\Projects\Autonaut-EE\Non-Acoustic data\SBE
 fdrs=dir(ddir);
 fdrs=fdrs(~ismember({fdrs.name},{'.','..'}));
 
-fles=dir([fullfile(ddir,fdrs(2).name) '\SBE_FastCat_CTD_49_01_2021_08_2*']);
+for ii = 1:numel(fdrs)
+
+fles=dir([fullfile(ddir,fdrs(ii).name) '\SBE_FastCat_CTD*']);
 fles=fles(~ismember({fles.name},{'.','..'}));
 %% salinity
 
 cnt=1;
 
 for jj=1:numel(fles)
-    fle=fullfile(ddir,fdrs(2).name,fles(jj).name);
+    fle=fullfile(ddir,fdrs(ii).name,fles(jj).name);
     SCAT_data = read_SBE49(fle);
     x=datetime(SCAT_data.DateString,'InputFormat','yyyy/MM/dd HH:mm:ss.S');
     y=SCAT_data.Salinity;
@@ -46,7 +48,7 @@ temp(~IN==0) = nan;
 %% speed of sound
 figure
 for jj=1:numel(fles)
-    fle=fullfile(ddir,fdrs(2).name,fles(jj).name);
+    fle=fullfile(ddir,fdrs(ii).name,fles(jj).name);
     SCAT_data = read_SBE49(fle);
     if jj==1
         x=datetime(SCAT_data.DateString,'InputFormat','yyyy/MM/dd HH:mm:ss.S');
@@ -58,7 +60,6 @@ for jj=1:numel(fles)
 
 end
 
-T = table(time,salt,temp, y, 'VariableNames', {'time','salt','temp','sound velocity'}) 
-save('SCAT_data_qc.mat','SCAT_data');
-
-
+T = table(time,salt,temp, y, 'VariableNames', {'time','salt','temp','sound velocity'}) ;
+save(['SCAT_data_qc_' fdrs(ii).name '.mat'],'SCAT_data');
+end
